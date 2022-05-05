@@ -1,3 +1,4 @@
+// Rock paper scissors logic
 const options = ["scissors", "paper", "rock"]
 
 function computerPlay() {
@@ -6,48 +7,54 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     player = playerSelection.toLowerCase();
+    result = document.querySelector('.result');
 
     switch (player) {
         case "scissors":
             if (computerSelection == "scissors") {
-                return console.log("It's a tie!")
+                result.textContent = "It's a tie!";
                 break;
             }
             else if (computerSelection == "paper") {
-                return console.log("You win!")
+                result.textContent = "You win!";
                 break;
             }
-            return console.log("You lose!");
+            result.textContent = "You lose!";
         case "paper":
             if (computerSelection == "scissors") {
-                return console.log("You lose!")
+                result.textContent = "You lose!";
                 break;
             }
             else if (computerSelection == "paper") {
-                return console.log("It's a tie!")
+                result.textContent = "It's a tie!"
                 break;
             }
-            return console.log("You win!");
+            result.textContent = "You win!";
         case "rock":
             if (computerSelection == "scissors") {
-                return console.log("You win!")
+                result.textContent = "You win!";
                 break;
             }
             else if (computerSelection == "paper") {
-                return console.log("You lose!")
+                result.textContent = "You lose!";
                 break;
             }
-            return console.log("It's a tie!");
+            result.textContent = "It's a tie!"
     }
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Your choice?');
-        const computerSelection = computerPlay();
-        console.log(`Player = ${playerSelection} and Computer = ${computerSelection}`)
-        playRound(playerSelection, computerSelection);
-    }
-}
+// Event listeners
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', function () {
+    playRound("rock", computerPlay())
+    }, false);
 
-game();
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', function () {
+    playRound("paper", computerPlay())
+    }, false);
+
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', function () {
+    playRound("scissors", computerPlay())
+    }, false);
